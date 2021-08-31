@@ -29,7 +29,7 @@ class Template(object):
         sbatch = "#SBATCH -J {}".format(self.JOB_name)
         init_text = "source /home/LAB/anaconda3/bin/activate {}".format(self.env)
         # log_dir = 'cd ' + self.bash_dir
-        sendmail = "python sendmail.py -c {} -s {}".format(self.email_content, self.email_title)
+        sendmail = "PostMessage -c {} -s {} -t mail".format(self.email_content, self.email_title)
         exec = self.exec
         File_name = self.bash_name
         self.__check()

@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "oolongTool",
-    version = "0.0.1",
+    version = "0.0.4",
     keywords = ("pip", "oolongTool", "oolong"),
     description = "tiny tools in using slurm cluster",
     long_description = "this is a project for collecting some useful tools",
@@ -18,7 +18,7 @@ setup(
     install_requires = [],
     entry_points={
         'console_scripts': [
-            'chinesename = chinesename.run:main'
+            'PostMessage = oolongTool.PostMessage:main'
         ]
     }
 )
