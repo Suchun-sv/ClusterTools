@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "oolongTool",
-    version = "0.0.4",
+    version = "0.1.1",
     keywords = ("pip", "oolongTool", "oolong"),
     description = "tiny tools in using slurm cluster",
     long_description = "this is a project for collecting some useful tools",

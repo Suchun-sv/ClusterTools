@@ -14,7 +14,7 @@ class Notation(object):
         self._user_dir = os.path.expanduser('~')
  
         if "path" in kwargs:
-            self._yaml_bind(kwargs['path'])
+            self._yaml_bind(path=kwargs['path'])
         else:
             self._yaml_bind()
 
@@ -24,7 +24,7 @@ class Notation(object):
     def _bind(self, *args, **kwargs):
         pass
 
-    def _yaml_bind(self, path=""):
+    def _yaml_bind(self, verbose=True, path="",):
         local_path = '{}/{}.yml'.format('./.cluster_secret', self._class_name)
         global_path = '{}/{}.yml'.format(f'{self._user_dir}/.cluster_secret', self._class_name)
         user_path = '{}/{}.yml'.format(f'{path}/.cluster_secret', self._class_name)
@@ -38,7 +38,8 @@ class Notation(object):
             save_dir = global_path
 
         if save_dir:
-            print("ClusterTools: using config in {}".format(save_dir))
+            if verbose:
+                print("ClusterTools: using config in {}".format(save_dir))
             with open(save_dir, 'r') as f:
                 key_data = yaml.load(f, Loader=yaml.FullLoader)
             for key, item in key_data.items():
@@ -80,11 +81,12 @@ class Notation(object):
         self._yaml_save(path)
 
     @classmethod
-    def P(cls, title, content="", **kwargs):
+    def P(cls, title, content="", verbose=False, **kwargs):
         cls._class_name = cls.__name__
         cls._user_dir = os.path.expanduser('~')
-        cls._yaml_bind(cls, kwargs.get('path', ''))
+        cls._yaml_bind(cls, verbose=False, path=kwargs.get('path', ''))
         cls._send(cls, title, cls._load_content(content), **kwargs)
+        return True
         
 
     def __call__(self, *args, **kwargs):
